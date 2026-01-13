@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{%block title%}Home-VidSnapAI{%endblock%}
+
+{%block content%}
+
+<div class="home">
+    <h1>Create Stunning Instagram Reels with AI</h1>
+    <p>
+        VidSnapAI helps you combine videos and text into beautiful reels
+        automatically using AI.
+    </p>
+
+    <a href="/create" class="home-btn">Create Your First Reel</a>
+</div>
+
+<div class="features">
+
+    <div class="feature">
+        <a href="/create">
+            <i class="fa-solid fa-wand-magic-sparkles"> </i>
+            <h4>AI-Powered Editing</h4>
+            <p>Let our AI analyze and enhance your videos automatically.</p>
+
+        </a>
+    </div>
+
+    <div class="feature">
+        <a href="/create">
+            <i class="fa-solid fa-film"></i>
+            <h4>Smart Stitching</h4>
+            <p>Seamlessly combine multiple clips into a perfect reel.</p>
+        </a>
+
+    </div>
+
+    <div class="feature">
+        <a href="/create">
+            <i class="fa-solid fa-music"></i>
+            <h4>Music Integration</h4>
+            <p>Add trending music and sound effects to your reels.</p>
+        </a>
+    </div>
+
+</div>
+
+<h2 class="section-title">Top Featured Reels</h2>
+
+<div class="featured-grid">
+  {% if featured_reels %}
+    {% for reel in featured_reels %}
+      <div class="reel-card">
+        <video controls muted preload="metadata">
+          <source src="{{ url_for('static', filename='reels/' + reel) }}" type="video/mp4">
+        </video>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No featured reels yet.</p>
+  {% endif %}
+</div>
+
+
+{%endblock%}

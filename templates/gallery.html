@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%}Gallery-VidSnapAI{%endblock%}
+
+{%block content%}
+<h4 class="reel_heading">Reel Gallery</h4>
+<div class="reel_grid">
+    {% for reel in reels %}
+        <video src="static/reels/{{reel}}" controls></video>
+        
+    {% endfor %}
+</div>
+
+
+{%endblock%}

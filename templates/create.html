@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{%block title%}Create-VidSanpAI{%endblock%}
+
+{%block content%}
+<div class="create-container">
+    <div class="card">
+        <h3>Create Your Reel</h3>
+        <p>Upload your video files to create and amazing reel. You can upload multiple files.</p>
+        <form action="/create" method="post" enctype="multipart/form-data">
+            <div class="form-container">
+                <div id="fileInputs" class="file-input-group">
+                    <input type="file" name="file1" class="file-input" />
+                    <input type="hidden" name="uuid" value="{{myid}}">
+                    <button type="button" class="remove-file-btn" onclick="removeFileInput(this)" disabled>x</button>
+                </div>
+                <button type="button" class="add-file-btn" onclick="addFileInput()">+ Add file</button>
+                <div class="text-input-container">
+                    <textarea class="text-input" id="textInput" name="text"
+                        placeholder="Enter your text to be added as voice here..." rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Create Reel</button>
+            </div>
+        </form>
+    </div>
+</div>
+{%endblock%}
+
+{%block extra_js%}
+
+<script>
+    let fileCounter = 2; // Start from 2 since we already have file1
+
+    function addFileInput() {
+        const fileInputs = document.getElementById('fileInputs');
+        const newFileInput = document.createElement('div');
+        newFileInput.className = 'file-input-group';
+        newFileInput.innerHTML = `
+            <input name="file${fileCounter}" type="file" class="file-input" />
+            <button type="button" class="remove-file-btn" onclick="removeFileInput(this)">x</button>
+        `;
+        fileInputs.appendChild(newFileInput);
+        fileCounter++;
+    }
+
+    function removeFileInput(button) {
+        const fileInputGroup = button.parentElement;
+        fileInputGroup.remove();
+    }
+</script>
+
+{%endblock%}
